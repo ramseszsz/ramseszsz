@@ -1,6 +1,6 @@
-Havia uma vez um jovem arqueiro chamado Aiden, cuja aldeia foi atacada por uma horda de criaturas sombrias que emergiram das profundezas de uma misteriosa masmorra. Seus pais, bravos guerreiros, sacrificaram suas vidas para proteger sua comunidade, mas Aiden foi poupado graças à rápida intervenção de um misterioso guardião da floresta.
+Havia um jovem arqueiro chamado Aiden, cuja aldeia foi atacada por uma horda de criaturas sombrias que emergiram das profundezas de uma misteriosa masmorra. Seus pais, bravos guerreiros, sacrificaram suas vidas para proteger sua comunidade, mas Aiden foi capturado e levado para um labirinto com armadilhas e monstros.
 
-Determinado a vingar sua família e libertar sua aldeia do terror das criaturas das masmorras, Aiden se lança em uma jornada solitária rumo às entranhas da terra. Munido apenas de seu arco, flechas afiadas e uma determinação inabalável, ele se aventura corajosamente nas profundezas da masmorra.
+Determinado a fugir, aiden se liberta de seus sequestradores e busca libertar sua aldeia do terror das criaturas das masmorras, Aiden se lança em uma jornada solitária rumo às entranhas do labirinto. Munido apenas de uma determinação inabalável, ele se aventura corajosamente em busca de salvar sua comunidade.
 
 como jogar:
 
