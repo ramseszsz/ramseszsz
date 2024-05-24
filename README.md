@@ -132,7 +132,7 @@ int menu(int lin1, int col1, int qtd, char lista[][40], char tutoriais[][200]) {
     lin2 = lin1 + (qtd * 2 + 2);
     col2 = col1 + tamMaxitem + 4;
 
-    textcolor(WHITE, _BLUE);
+    textcolor(WHITE, _BLACK);
     setlocale(LC_ALL, "C");
     box(lin1, col1, lin2, col2);
     setlocale(LC_ALL, " ");
@@ -143,7 +143,7 @@ int menu(int lin1, int col1, int qtd, char lista[][40], char tutoriais[][200]) {
             if (i + 1 == opc)
                 textcolor(BLACK, _LIGHTGREEN);
             else
-                textcolor(WHITE, _BLUE);
+                textcolor(WHITE, _BLACK);
             linhacol(linha + 1, col1 + (tamMaxitem - strlen(lista[i])) / 2 + 2);
             printf("%s", lista[i]);
             linha += 2;
@@ -611,17 +611,19 @@ if (map2[playerY2][playerX2] == '>') {
 
                     }
  // Após o término do loop do segundo mapa
-if (playerX2 == doorX2 && playerY2 == doorY2 && doorOpen2) {
-    system("cls");
-    printf("Parabens! Você completou o segundo mapa. Pressione qualquer tecla para avançar para a fase 3.\n");
-    getch();
-    gameRunning2 = 0;}
+
        	
        
     
     
 
-    char map3[45][45] = {
+    if (playerX == doorX2 && playerY2 == doorY2 && doorOpen2) {
+                    system("cls");
+                    printf("Voce completou a segunda fase! Pressione qualquer tecla para continuar.\n");
+                    getch();
+                    
+                    // Resetar o mapa e as posições para a próxima fase
+                    char map3[45][45] = {
     "*********************************************",
     "*                        $               @  *", //1
     "*###########    #############    ###########*", //2
@@ -653,117 +655,142 @@ if (playerX2 == doorX2 && playerY2 == doorY2 && doorOpen2) {
     "*                              #            *", //28
     "*********************************************"
 };
+                    int playerX3 = 1; // Nova posição inicial do jogador na segunda fase
+                    int playerY3 = 1; // Nova posição inicial do jogador na segunda fase
+                    int monsterX3 = 27; // Posição inicial do monstro no segundo mapa
+                    int monsterY3 = 23; // Posição inicial do monstro no segundo mapa
+                    int keyX3 = 2; // Posição da chave no segundo mapa
+                    int keyY3 = 16; // Posição da chave no segundo mapa
+                    int doorX3 = 28; // Posição da porta no segundo mapa
+                    int doorY3 = 4; // Posição da porta no segundo mapa
+                    int hasKey3 = 0; // O jogador não pegou a chave inicialmente no segundo mapa
+                    int doorOpen3 = 0; // A porta está inicialmente fechada no segundo mapa
+                    int lives3 = lives; // Vidas do jogador na segunda fase
+                    int gameRunning3 = 1;
+                    int lastMoveX = 0;
+                    int lastMoveY = 0;
+                    
+
+                    while (gameRunning2) {
+                        // Lógica do segundo mapa
+                        system("cls");
+                        // Calcula as diferenças entre as coordenadas do jogador e as coordenadas do monstro
+                        // Calcula as diferenças entre as coordenadas do jogador e as coordenadas do monstro
 
 
 
-int playerX3 = 1; // Nova posição inicial do jogador na segunda fase
-int playerY3 = 1; // Nova posição inicial do jogador na segunda fase
-int monsterX3 = 14; // Posição inicial do monstro no segundo mapa
-int monsterY3 = 13; // Posição inicial do monstro no segundo mapa
-int keyX3 = 13; // Posição da chave no segundo mapa
-int keyY3 = 13; // Posição da chave no segundo mapa
-int doorX3 = 26; // Posição da porta no segundo mapa
-int doorY3 = 13; // Posição da porta no segundo mapa
-int hasKey3 = 0; // O jogador não pegou a chave inicialmente no segundo mapa
-int doorOpen3 = 0; // A porta está inicialmente fechada no segundo mapa
-int lives3 = lives; // Vidas do jogador na segunda fase
-int gameRunning3 = 1;
-int lastMoveX2 = 0;
-int lastMoveY2 = 0;
+// Movimentação do jogador
 
-while (gameRunning3) {
-    // Lógica do segundo mapa
-    system("cls");
-    // Calcula as diferenças entre as coordenadas do jogador e as coordenadas do monstro
-    
 
-    // Desenhar o mapa com os personagens
-    drawMap3(map3, &playerX3, &playerY3, monsterX3, monsterY3, keyX3, keyY3, hasKey3, doorX3, doorY3, doorOpen3, lives3);
+// Movimentação do monstro na mesma direção que o jogador
+
+
+
+                        // Desenhar o mapa com os personagens
+                        drawMap3(map3, &playerX3, &playerY3, monsterX3, monsterY3, keyX3, keyY3, hasKey3, doorX3, doorY3, doorOpen3, lives3);
+
+    // Obter movimento do jogador
     char move3 = getch();
-    switch(move3) {
-        case 'w':
-            if (map3[playerY3 - 1][playerX3] != '*') {
-                playerY3--;
-                lastMoveX2 = 0;
-                lastMoveY2 = -1;
-            }
-            break;
-        case 's':
-            if (map3[playerY3 + 1][playerX3] != '*') {
-                playerY3++;
-                lastMoveX2 = 0;
-                lastMoveY2 = 1;
-            }
-            break;
-        case 'a':
-            if (map3[playerY3][playerX3 - 1] != '*') {
-                playerX3--;
-                lastMoveX2 = -1;
-                lastMoveY2 = 0;
-            }
-            break;
-        case 'd':
-            if (map3[playerY3][playerX3 + 1] != '*') {
-                playerX3++;
-                lastMoveX2 = 1;
-                lastMoveY2 = 0;
-            }
-            break;
-        case 'i': // Interagir com a chave
-                        if (playerX3 == keyX3 && playerY3 == keyY3 && !hasKey3) {
-                            hasKey3 = 1; // O jogador pegou a chave
-                            doorOpen3 = 1; // Abrir a porta
-                        }
-                        break;
-        case 27: // Tecla Esc
-            gameRunning3 = 0;
-            break;
-    }
+switch(move3) {
+    case 'w':
+        if (map3[playerY3 - 1][playerX3] != '*' && map3[playerY3 - 1][playerX3] != '$') {
+            playerY3--;
+            lastMoveX = 0;
+            lastMoveY = -1;
+        }
+        break;
+    case 's':
+        if (map3[playerY3 + 1][playerX3] != '*' && map3[playerY3 + 1][playerX3] != '$') {
+            playerY3++;
+            lastMoveX = 0;
+            lastMoveY = 1;
+        }
+        break;
+    case 'a':
+        if (map3[playerY3][playerX3 - 1] != '*' && map3[playerY3][playerX3 - 1] != '$') {
+            playerX3--;
+            lastMoveX = -1;
+            lastMoveY = 0;
+        }
+        break;
+    case 'd':
+        if (map3[playerY3][playerX3 + 1] != '*' && map3[playerY3][playerX3 + 1] != '$') {
+            playerX3++;
+            lastMoveX = 1;
+            lastMoveY = 0;
+        }
+        break;
+    case 'i': // Interagir com a chave
+        if (playerX3 == keyX3 && playerY3 == keyY3 && !hasKey3) {
+            hasKey3 = 1; // O jogador pegou a chave
+            doorOpen3 = 1; // Abrir a porta
+        }
+        break;
+    case 27: // Tecla Esc
+        gameRunning2 = 0;
+        break;
+}
+
+    
 
     // Movimentação do monstro na mesma direção que o jogador
-    if (lastMoveX != 0 || lastMoveY != 0) {
-        int newMonsterX3 = monsterX3 + lastMoveX;
-        int newMonsterY3 = monsterY3 + lastMoveY;
+   // Movimentação do monstro na direção oposta ao jogador
+if (lastMoveX != 0 || lastMoveY != 0) {
+    int newMonsterX3 = monsterX3 - lastMoveX; // Inverte a direção na coordenada X
+    int newMonsterY3 = monsterY3 - lastMoveY; // Inverte a direção na coordenada Y
 
-        // Verifique se a nova posição do monstro não é um obstáculo
-        if (map3[newMonsterY3][newMonsterX3] != '*') {
-            monsterX3 = newMonsterX3;
-            monsterY3 = newMonsterY3;
-        }
-    
-    // Verificar se o jogador encostou em um obstáculo (espinhos) no segundo mapa
-    if (map3[playerY3][playerX3] == '#') {
-        lives3--; // Reduzir uma vida
-        if (lives3 <= 0) {
-            system("cls");
-            printf("Voce foi morto ao encostar no obstaculo! Pressione qualquer tecla para voltar ao menu principal.\n");
-            getch();
-            gameRunning3 = 0; // Terminar o jogo
-        } else {
-            // Restaurar a posição original do jogador
-            playerX3 = 1;
-            playerY3 = 1;
-        }
+    // Verifique se a nova posição do monstro não é um obstáculo
+    if (map3[newMonsterY3][newMonsterX3] != '*') {
+        monsterX3 = newMonsterX3;
+        monsterY3 = newMonsterY3;
     }
-    // Verificar se o jogador encostou no monstro no segundo mapa
-    if (playerX3 == monsterX3 && playerY3 == monsterY3) {
-        lives3--; // Reduzir uma vida
-        if (lives3 <= 0) {
-            system("cls");
-            printf("Voce foi morto pelo monstro! Pressione qualquer tecla para voltar ao menu principal.\n");
-            getch();
-            gameRunning3 = 0; // Terminar o jogo
-        } else {
-            // Restaurar a posição original do jogador
-            playerX3 = 1;
-            playerY3 = 1;
-        }
-    }
-    
-    if (playerX3 == keyX3 && playerY3 == keyY3 && !hasKey3) {
-        hasKey3 = 1; // O jogador pegou a chave
-        doorOpen3 = 1; // Abrir a porta
-    }
+}
+
+
+    // Atualização da tela e outras operações de jogo...
+
+                        // Verificar se o jogador encostou em um obstáculo (espinhos) no segundo mapa
+                        if (map3[playerY3][playerX3] == '#') {
+                            lives3--; // Reduzir uma vida
+                            if (lives3 <= 0) {
+                                system("cls");
+                                printf("Voce foi morto ao encostar no obstaculo! Pressione qualquer tecla para voltar ao menu principal.\n");
+                                getch();
+                                gameRunning3 = 0;
+								gameRunning2= 0; // Terminar o jogo
+                            } else {
+                                // Restaurar a posição original do jogador
+                                playerX3 = 1;
+                                playerY3 = 1;
+                            }
+                            
+                        }
+                        // Verificar se o jogador encostou no monstro no segundo mapa
+                        if (playerX3 == monsterX3 && playerY3 == monsterY3) {
+                            lives3--; // Reduzir uma vida
+                            if (lives3 <= 0) {
+                                system("cls");
+                                printf("Voce foi morto pelo monstro! Pressione qualquer tecla para voltar ao menu principal.\n");
+                                getch();
+                                gameRunning3 = 0;
+								gameRunning2 = 0; // Terminar o jogo
+                            } else {
+                                // Restaurar a posição original do jogador
+                                playerX3 = 1;
+                                playerY3 = 1;
+                            }
+                            
+                        }
+                        
+                        // Verificar se o jogador está em cima da porta aberta e terminar o jogo
+                        
+                        // Verificar se o jogador entrou no teletransporte
+if (map3[playerY3][playerX3] == '>') {
+    // Definir nova posição do jogador
+    playerX3 = 28;
+    playerY3 = 28;
+}
+
     // Verificar se o jogador está em cima da porta aberta e terminar o jogo
     if (playerX3 == doorX3 && playerY3 == doorY3 && doorOpen3) {
         system("cls");
